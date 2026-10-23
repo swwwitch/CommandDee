@@ -1,0 +1,70 @@
+A menu bar app that duplicates or renames the files and folders selected in Finder / Path Finder, adding a version number or date.
+
+## Basic Use
+1. Select files or folders in Finder / Path Finder. Multiple items and folders are supported.
+2. Press one of the shortcuts below.
+
+### Duplicate and Rename
+- **⌘D**: duplicate with the next version (the highest version number in the folder + 1)
+- **⌃D**: rename without duplicating, adding or updating today's date at the end
+- **⌃⌘D**: duplicate, adding or updating today's date at the end
+- **⌃⌘E**: duplicate, adding -edited at the end (the date and version stay as they are)
+- **⌃F**: rename by adding or removing -parent folder name at the end
+- **⌃⌘S**: swap the names of 2 items selected in the same folder
+
+⌃ renames without duplicating; ⌘ and ⌃⌘ duplicate (⌃⌘S swaps names). D = date, E = edited / edit, F = folder, S = switch.
+
+### Palette
+- Press ⌃⌥⌘D in any app, or choose Show Palette from the menu bar icon, to open a palette with a button for each action. Press ⌃⌥⌘D again to hide it. You can change the key in Settings > Startup & Background.
+- For the items selected in Finder or Path Finder, each button shows the resulting name, with the changed part in color. With several items, the first one is shown; hold the pointer over a button to see the result for every item.
+- The palette floats over Finder and Path Finder, and clicking it does not change the Finder selection. It hides automatically when you switch to another app and comes back when you return to Finder or Path Finder (press ⌃⌥⌘D to show it in any app).
+- Click Add Status in the palette to choose a word such as wip, draft or review and add it to the name (renames without duplicating, e.g. aaa.txt → aaa-wip.txt). Another status already in the name is replaced. Edit the list in Settings > File Names.
+
+### App Commands
+- **⌘0**: Open Main Window
+- **⌘,**: Settings
+- **⌘W**: Close Window
+- **⌘Q**: Quit CommandDee (in this app's window)
+
+## Examples
+- **⌘D**: v2 and v5 exist → v6 (gaps are ignored)
+- **⌃D**: aaa.txt → aaa-YYYYMMDD.txt (rename)
+- **⌃⌘D**: aaa.txt → aaa-YYYYMMDD.txt (duplicate)
+- **⌃⌘E**: aaa.txt → aaa-edited.txt
+
+## Duplicate and Rename Rules
+- Extensions are kept, and neither the original nor existing copies are overwritten.
+- A trailing 6- or 8-digit date is recognized and updated to 8 digits.
+- Items already dated today are skipped (⌃D, ⌃⌘D). Items already marked "edited" are skipped by ⌃⌘E.
+- If another item with the same name exists, nothing is changed and you are notified.
+
+### Swapping Names
+- Works between 2 files or 2 folders.
+- The full names (including extensions) are exchanged, while each item keeps its contents and modification date.
+- There is no automatic decision based on the highest number or modification date.
+- To undo, select the same 2 items and run it again.
+
+## Settings
+Choose Settings… (⌘,) from the menu bar icon.
+- **Separator**: choose a hyphen (-) or an underscore (_) before each suffix (version number, "edited", date, parent folder name). Version numbers, "edited" and dates are read only after the chosen separator; a parent folder name is removed after either one.
+- **Suffix order**: choose the order of the version number, "edited" and the date. Existing names are read as well, and the next operation writes them in the chosen order.
+- **Action Shortcuts**: click Change… and press the keys to assign (include ⌘ or ⌃; Esc cancels). Reset to Default and Clear are also available. A key used by another action or the palette cannot be assigned twice.
+- **Parent folder name to skip**: uses an exact match and refers to the folder above. Leave the field empty to turn it off.
+- **Hide from Dock and App Switcher**: in Startup & Background, below Hide main window at startup. When on, the app stays out of the Dock and the ⌘Tab switcher even while a window is open. Show it from the menu bar icon or by opening the app again in Finder.
+- **Sharing**: “Export…” saves the settings to CommandDee-Settings.plist, and “Import…” replaces them after asking. “Set Sync Folder…” syncs with your other Macs through a folder you choose (iCloud Drive, Dropbox, etc.). Shared: the action shortcuts and whether they are on, the separator, the suffix order, the status words and the parent folder name to skip. Login launch, startup display, the menu bar icon, the palette shortcut and Accessibility are set per Mac.
+
+## Permissions
+- On first use, allow Accessibility. Click Open Accessibility Settings in this window, or use Accessibility on the Startup & Background tab of Settings to check the status and open the settings. Until it is allowed, the shortcuts do not work and the status says Accessibility is not allowed.
+- You also need to allow control of Finder / Path Finder when macOS asks.
+
+## Running in the Background and Quitting
+- CommandDee stays in the menu bar after you close the window.
+- To quit, press ⌘Q in this app's window, or choose Quit CommandDee from the menu bar icon.
+
+## Help and the note Article
+- To open this help, choose Help > CommandDee Help from the menu bar icon. You can also choose CommandDee Help (⌘?) in the Help menu.
+- Choose Open the note Article in the same Help submenu to read the article on note in your browser.
+
+## Updates and the Menu Bar
+- Check for Updates… and Automatically Check for Updates in the app menu show that updates are not configured, and make no network access, until an update feed and signing key are set up.
+- Choose Menu Bar Settings… in the app menu to show or hide the menu bar icon. Hiding it does not quit the app.
